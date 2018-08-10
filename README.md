@@ -18,10 +18,7 @@ Please consider improving this code with your contributions. Pull requests welco
 
 ### Configuring Your Development Application
 
-Your application will need to be set up to use the public OAuth service.  Go to  https://bluebutton.cms.gov/ for documentation on how to register for a sandbox account and register your application. In order to use this version of
-the service, you'll need to request an account on that site. So select Account ->
-"Request an Invite," fill out the form, setting user type to "Developer," and
-we'll get back to you as soon as possible.
+Your application will need to be set up to use the public OAuth service.  Go to  https://bluebutton.cms.gov/ for documentation on how to register for a sandbox account and register your application. 
 
 Once you have your developer account created and you've verified your email address,
 you'll need to set up an application. Log in to your new account, and select

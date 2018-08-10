@@ -46,29 +46,15 @@ export class LoginComponent implements OnInit {
 
         // reset login status
         this.authenticationService.logout();
-        console.log("deh - In ngOnInit")
+       
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-       console.log("deh - returnUrl is " + this.returnUrl);
       
+        var index = this.returnUrl.indexOf( "code" ); 
+        this.code = this.returnUrl.substr(index + 5, 30)
       
- 
-      var index = this.returnUrl.indexOf( "code" ); 
-      this.code = this.returnUrl.substr(index + 5, 30)
-        console.log("indexOf found code :" + index );   
-      console.log("code is " + this.code );   
+        this.code = this.route.snapshot.queryParams['code'];
       
-      
-    console.log("deh-code value is" + this.code);
-    console.log("deh code value2" + this.route.snapshot.queryParams['code'])
-      
-      this.code = this.route.snapshot.queryParams['code'];
-      
-       console.log("deh code value really is " + this.route.snapshot.queryParams['code'])
-    
-
-   
-
     }
 
     // convenience getter for easy access to form fields
@@ -83,21 +69,8 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-  //      this.authenticationService.login(this.f.username.value, this.f.password.value)
 
-           this.authenticationService.getBlueButtonToken(this.f.username.value, this.f.password.value, this.code, this.router);
-        console.log("deh-in login-before navigate-returnUrl is " + this.returnUrl);
-    
-//    .pipe(first())
-//            .subscribe(
-//                data => {
-//                  console.log ('deh-data returned back to loginComponent ' + data)
-//                    this.router.navigate([this.returnUrl]);
-//                },
-//                error => {
-//                    this.error = error;
-//                    this.loading = false;
-//                });
+        this.authenticationService.getBlueButtonToken(this.f.username.value, this.f.password.value, this.code, this.router);
     }
   
   onClickMe() {

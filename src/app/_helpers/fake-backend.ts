@@ -2,7 +2,6 @@
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
-import { myService } from '../_services/data.service';
 import { User } from '../_models';
 import { EOB} from '../_models';
 import { EOBDetail} from '../_models';
@@ -53,12 +52,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (request.url.endsWith('/api/eobdetail') && request.method === 'GET') {
                  
                 let eobDetailData = this.formatEOBDetail();
-                 console.log("in fake backend with /api/eobdetail " + eobDetailData.claimStatus)
                  return of(new HttpResponse({ status: 200, body: [eobDetailData] }));
                 
             }
             // pass through any requests not handled above
-          console.log("deh in fakebackendinterceptor request" + request.urlWithParams);
+        
             return next.handle(request);
             
         }))
@@ -71,10 +69,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
   
   formatEOBData() {
          let jsonData = JSON.parse(localStorage.getItem('dehJSONData'));
-        console.log ('jsonData in fake backend ' + jsonData); 
-
+     
          let jsonParsedObject = JSON.parse(JSON.stringify(jsonData)) ;
-          console.log ("deh-jsonParsedObject " + jsonParsedObject);
+       
          let eobNew = new EOB();
     
          for (var i=0; i<1; i++){
@@ -93,30 +90,24 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           
               //billable period - start
               eobNew.billablePeriodStart1 = this.getNestedObject(eobEntry, ['resource', 'billablePeriod', 'start']) ;
-              console.log("deh-start billable period in fake back end " + eobNew.billablePeriodStart1);
+            
              //billable period - end
           
               eobNew.billablePeriodEnd1 = this.getNestedObject(eobEntry, ['resource', 'billablePeriod', 'end']) ;
-              console.log("deh-end billable period in fake back end " + eobNew.billablePeriodEnd1);
+            
               // claim id and type (i.e. carrier)          
              
               this.claimId = this.getNestedObject(eobEntry, ['resource', 'id']) ;
               var index = this.claimId.indexOf( "-" ); 
               eobNew.claimId1 = this.claimId.substr(index + 1,10);
               eobNew.claimType1 = this.claimId.substr(0,index);
-              console.log("deh-claim id 1 in fake back end " + eobNew.claimId1);
-           
+         
            // claim_type_cd and claim_type_cd display          
              
              eobNew.claimTypeCd1 = this.getNestedObject(eobEntry, ['resource', 'type', 'coding', 0, 'code']) ;
              eobNew.claimTypeCdDisplay1 = this.getNestedObject(eobEntry, ['resource', 'type', 'coding', 0, 'display']) ;
              
-              console.log("deh-claim id 1 in fake back end " + eobNew.claimId1);
-//              pathArr2.length = 0;
-//              pathArr2 = ['resource', 'item', 0, 'service', 'coding', 0, 'code'];
-//              const hcpcsCode =  pathArr2.reduce((obj, key) =>
-//                     (obj && obj[key] !== 'undefined') ? obj[key] : undefined, eobEntry);
-//              console.log("deh-hcpcs code in fake back end " + hcpcsCode);
+ 
           }
  
           for (var i=1; i<2; i++){
@@ -163,31 +154,15 @@ export class FakeBackendInterceptor implements HttpInterceptor {
            
           }
          
-  //         let eobs = { id: 1, username: 'test', password: 'test', firstName: 'Jimmy', lastName: 'Johnson', billablePeriodStart: billablePeriodStart, hcpcsCode: hcpcsCode };
-  //          let eobs2 = { id: 2, username: 'test', password: 'test', firstName: 'Jimmy2', lastName: 'Johnson2', billablePeriodStart: billablePeriodStart, hcpcsCode: hcpcsCode };
-           
-           
-//           eobNew.id = 3;
-//           eobNew.firstName = 'Tommy';
-//           eobNew.lastName = 'Tutone';
-//          eobNew.claimId1 = 'claimid1';
-//          eobNew.claimId2 = 'claimid2';
-    
-         
-   
-           
-           
-       //    this.eobs.push(eobNew);
-       //    console.log ('deh-eobs ' + eobArray.toString);
            return eobNew;
   }
   
   formatEOBDetail ()  {
        let jsonData = JSON.parse(localStorage.getItem('dehJSONData'));
-        console.log ('jsonData in fake backend ' + jsonData); 
+        
 
          let jsonParsedObject = JSON.parse(JSON.stringify(jsonData)) ;
-          console.log ("deh-jsonParsedObject " + jsonParsedObject);
+        
          let eobDetail = new EOBDetail();   
                        
            for (var i=0; i<99; i++){
@@ -201,12 +176,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
               this.claimId = this.getNestedObject(eobEntry, ['resource', 'id']) ;
               var index = this.claimId.indexOf( "-" ); 
               eobDetail.claimId = this.claimId.substr(index + 1,10);
-            console.log("deh in eobdetail-claim id  " + i + " " + eobDetail.claimId);
-             console.log("deh in fake -localStorage claim id is  " + localStorage.getItem('claimId'));
+           
              
              
               if (localStorage.getItem('claimId') == this.claimId.substr(index + 1,10)){
-                   console.log("deh in fake back end-FOUND claim id  -claim id  " + i + " " + eobDetail.claimId);
+                  
                    this.claimIndex = i;
             
                   
@@ -220,7 +194,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             
          let entry = jsonData["entry"];              
          let eobClaimEntry = entry[this.claimIndex];  
-              console.log("deh in fake backend from eobdetail claim index " + this.claimIndex);
+            
                             
     
        // status     
@@ -253,8 +227,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
        
     
        let adjudication = this.getNestedObject(eobClaimEntry, ['resource', 'item', 0, 'adjudication']) ;
-        console.log("deh-adjudication array in fake back end " + adjudication[1]);
-     console.log("deh-adjudication array length in fake back end " + adjudication.length);
+     
 //       for (var i=0; i< adjudication.length; i++){
 //              eobDetail.adjudicationDisplay = this.getNestedObject(eobClaimEntry, ['resource', 'item', 0, 'adjudication', i, 'category', 'coding', 0, 'display']) ;
 //              console.log("deh-adjudication display in fake back end " + eobDetail.adjudicationDisplay);

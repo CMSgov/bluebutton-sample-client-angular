@@ -10,9 +10,6 @@ import { User } from '../_models';
 import { EOB} from '../_models';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
-import { myService } from '../_services/data.service';
-
-
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -42,7 +39,7 @@ export class AuthenticationService {
      urlSearchParams.set('code', code);
 
     let body = urlSearchParams.toString();
-    console.log("deh-body is " + body);
+   
 
        const authorizationcode = 'authorization_code';
     
@@ -61,39 +58,14 @@ export class AuthenticationService {
            headers, HttpHeaders  
             }, 
          )
-//            .pipe(map(AuthToken => {
-//                // login successful if there's a jwt token in the response
-//              console.log("deh-authtoken " + AuthToken)
-//                if (AuthToken && AuthToken.token) {
-//                   console.log("deh-authtoken WAS FOUND " + AuthToken)
-//                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-//                  localStorage.setItem('currentUser', JSON.stringify({ username, token: AuthToken.access_token}));
-//             //       localStorage.setItem('currentUser', JSON.stringify(user));
-//                }
-//                console.log('deh-right before AuthToken return')
-//                return AuthToken;
-//            }));
-    
-    
-  //   return this.http.post<any>('https://sandbox.bluebutton.cms.gov/v1/fhir/ExplanationOfBenefit/', { eobparams })
-//        this.http.post <any>('https://sandbox.bluebutton.cms.gov/v1/o/token/?' + body,
-//         {
-//           headers, HttpHeaders  
-//            }, 
-//         )
        
           .subscribe(
       data => {
-        console.log("Access_Token " + data.access_token);
-        console.log("Expires " + data.expires_in);
-        console.log("Token_Type: " + data.token_type);
-         console.log("Scope: " + data.scope);
-        console.log("Refresh_Token: " + data.refresh_token);
+       
         localStorage.setItem('currentUser', JSON.stringify({ username, token: data.access_token}));
-        console.log("after get token call-token being set to localStorage is " + JSON.stringify({ username, token: data.access_token}));   
+        
          
          //retrieveFHIRData
-        console.log("deh-in retrieveFHIRData");
   
         var headers = new HttpHeaders()
        .set('Content-Type', 'application/json');
@@ -105,11 +77,11 @@ export class AuthenticationService {
            )
          .subscribe(data => {
       //        let jsonObject = response.data;
-            console.log("deh result from Blue Button API Call is " + JSON.stringify(data)); 
+        
             localStorage.setItem('dehJSONData', JSON.stringify(data));
-     //        console.log ("deh-jsonObject " + jsonObject);
+  
               let jsonParsedObject = JSON.parse(JSON.stringify(data)) ;
-             console.log ("deh-jsonParsedObject " + jsonParsedObject);
+       
            
            let entry = data["entry"];
 
@@ -119,41 +91,18 @@ export class AuthenticationService {
            let pathArr = ['resource', 'billablePeriod', 'start'];
           const billablePeriodStart =  pathArr.reduce((obj, key) =>
         (obj && obj[key] !== 'undefined') ? obj[key] : undefined, firstEntry);
-           console.log("deh-start billable period " + billablePeriodStart);
+      
            
             let pathArr2 = ['resource', 'item', 0, 'service', 'coding', 0, 'code'];
           const hcpcsCode =  pathArr2.reduce((obj, key) =>
-        (obj && obj[key] !== 'undefined') ? obj[key] : undefined, firstEntry);
-           console.log("deh-hcpcs code " + hcpcsCode);
-           
-            
-  //             eobBeneData.total = jsonParsedObject.entry.resource;
-  //            console.log("dehid is " + eobBeneData.id + " dehtotal " + eobBeneData.total);
-         
-        
+        (obj && obj[key] !== 'undefined') ? obj[key] : undefined, firstEntry);             
           router.navigate(['/home']);       
-           }) 
-            
-   
+           })         
             },
       err => {
-        console.log("deh token error back received Error occured.");
-        
-       
+            
       })
    
-    
-   
-          
-     //       .pipe(map((res:any) => {
-                // login successful if there's a jwt token in the response
-       //          console.log("after get token call" + res)
-       //         if (res && res.token) {
-                    // store username and jwt token in local storage to keep user logged in between page refreshes
-        //            localStorage.setItem('currentUser', JSON.stringify({ username, token: res.token }));
-        //          console.log("after get token call-token is " + JSON.stringify({ username, token: res.token }))
-         //       }
-         //   }));
     }
   
  

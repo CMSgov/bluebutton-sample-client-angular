@@ -17,23 +17,12 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this.userService.retrieveFHIRData();
-       console.log ("after retrieveFHIRData call ");
+      
       
       
       this.userService.getAll().pipe().subscribe(eobsArray => { 
             this.eobsArray = eobsArray; 
         });
-      
-      
-      
-      console.log ("after getAllUser service call eobs " + this.eobsArray.length);
-      
-  //   let testUser = { id: 1, username: 'test', password: 'test', firstName: 'Dave', lastName: 'Holdgrafer' };  
-   //    return of(new HttpResponse({ status: 200, body: [testUser] }));
-     
-   
-      
-        
-        
+           
     }
 }
