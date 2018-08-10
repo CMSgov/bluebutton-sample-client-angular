@@ -1,0 +1,98 @@
+﻿<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+</style>
+
+
+<h4>Blue Button 2.0 - Angular Sample Application - EOB Detail</h4> <br>
+<p>Following is a sample of the Blue Blutton sandbox medical claims data for the following claim id</p>
+<table style="width:100">
+  <tr *ngFor="let eobDetail of eobDetailArray">
+    <td style="color: Blue; ">{{eobDetail.firstName}} {{eobDetail.lastName}} </td>  
+    <td style="color: Blue; ">beneficiary id: {{eobDetail.beneId}}</td>
+    <td style="color: Blue; ">claim id: {{eobDetail.claimId}}</td>
+     <td style="color: Blue; ">status: {{eobDetail.claimStatus}}</td>
+     <td style="color: Blue; ">billable period start:<p align="right" style="width: 156px; ">{{eobDetail.billablePeriodStart}}</p></td> 
+       <td style="color: Blue; ">billable period end:<p align="right" style="width: 156px; ">{{eobDetail.billablePeriodEnd}}</p></td> 
+  </tr>
+</table>
+
+<div> 
+   <br><br>
+   <h4>Claim Detail</h4> <br>
+<table style="width:100%"> <tr *ngFor="let eobDetail of eobDetailArray">
+ 
+  <th style="width: 185px; ">Payment Amount</th>
+    <th style="width: 200px; ">Provider NPI</th>
+    <th style="width: 227px; ">Primary Diagnosis</th>    
+  </tr>
+</table>
+<table style="width:100%">
+  <tr *ngFor="let eobDetail of eobDetailArray">
+  <td style="width: 256px; ">${{eobDetail.paymentAmount}} </td>   
+    <td style="width: 275px; ">{{eobDetail.provider}} </td>   
+    <td style="width: 312px; ">{{eobDetail.diagnosisPrimary}} (Description of this ICD code will be available soon)</td>   
+  
+    
+  </tr>
+  </table>
+
+
+</div>
+
+
+<div> 
+   <br><br>
+   <h4>Item Detail</h4> <br>
+<table style="width:100%"> <tr *ngFor="let eobDetail of eobDetailArray">
+ 
+  <th style="width: 56px; ">Line #</th>
+    <th style="width: 110px; ">HCPCS Code</th>
+    <th style="width: 157px; ">{{eobDetail.adjudicationDisplay1}}</th>
+    <th style="width: 217px; ">{{eobDetail.adjudicationDisplay1B}}</th>
+     <th style="width: 251px; ">Services - mtus code</th>
+     <th style="width: 261px; ">Betos code </th>
+      
+  </tr>
+</table>
+<table style="width:100%">
+  <tr *ngFor="let eobDetail of eobDetailArray">
+  <td style="width: 52px; "> 1 </td> 
+  <td style="width: 116px; ">{{eobDetail.itemHcpcsCode1}} </td>   
+  <td style="width: 192px; ">${{eobDetail.adjudicationAmount1}} </td>   
+   <td style="width: 221px; ">${{eobDetail.adjudicationAmount1B}} </td>   
+   <td style="width: 281px; ">{{eobDetail.itemMtusCode1}} </td>  
+    <td style="width: 296px; ">{{eobDetail.itemBetosCode1}} - {{eobDetail.itemBetosCodeDisplay1}}</td>   
+    
+  </tr>
+  </table>
+
+<table style="width:100%">
+  <tr *ngFor="let eobDetail of eobDetailArray">
+  <td style="width: 52px; "> 2 </td> 
+  <td style="width: 116px; ">  5434 </td>   
+  <td style="width: 192px; ">$35</td>   
+   <td style="width: 221px; ">$45</td>   
+   <td style="width: 281px; "> 5TY</td>  
+    <td style="width: 296px; ">  T33 </td>   
+    
+  </tr>
+  </table>
+  
+ <!--  <h4>Item Detail</h4>
+<table style="width:100%">
+  <tr ng-repeat="name in nameArray">{{name}}</tr>
+   </table> -->
+
+  
+   <!--  <ul>
+       <ul *ngFor="let eob of eobsArray">{{eob.firstName}} {{eob.lastName}}  {{eob.beneId}} </ul>
+         <li *ngFor="let eob of eobsArray">{{eob.claimId1}}  {{eob.claimType1}} {{eob.claimTypeCd1}} {{eob.claimTypeCdDisplay1}} {{eob.billablePeriodStart1}} {{eob.billablePeriodEnd1}}</li>
+          <li *ngFor="let eob of eobsArray">{{eob.claimId2}}  {{eob.claimType2}} {{eob.claimTypeCd2}} {{eob.claimTypeCdDisplay2}} {{eob.billablePeriodStart2}} {{eob.billablePeriodEnd2}}</li>
+          <li *ngFor="let eob of eobsArray">{{eob.claimId3}}  {{eob.claimType3}} {{eob.claimTypeCd3}} {{eob.claimTypeCdDisplay3}} {{eob.billablePeriodStart3}} {{eob.billablePeriodEnd3}}</li>
+         
+    </ul> -->
+</div>
+<p><a [routerLink]="['/login']">Logout</a></p>

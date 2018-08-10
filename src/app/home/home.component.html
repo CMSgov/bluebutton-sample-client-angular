@@ -1,9 +1,65 @@
-﻿<h1>Home</h1>
-<p>You're logged in with Angular 6 & JWT!!</p>
+﻿<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+</style>
+<h4>Blue Button 2.0 - Angular Sample Application</h4>
+<p>Following are the historical claims for the following beneficiary...</p>
 <div>
-    Users from secure api end point:
-    <ul>
-        <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
-    </ul>
+   <table>
+  <tr *ngFor="let eob of eobsArray">
+    <td style="color: Blue; ">   {{eob.firstName}} {{eob.lastName}}      </td>
+     <td style="color: Blue; ">   Beneficiary Id: {{eob.beneId}}     </td>
+       <td style="color: Blue; ">   Birth Date: {{eob.birthDate}}  </td>
+  </tr>
+</table>
+<table style="width:100%">
+  <tr> 
+    <th style="width: 128px; ">Claim Id</th>
+    <th style="width: 150px; ">Claim Type</th>
+     <th style="width: 139px; ">Claim Type Code</th>
+      <th style="width: 267px; ">Claim Type Description</th>
+      <th>Billable Period Start Date</th>
+       <th>Billable Period End Date</th>
+  </tr>
+</table>
+<table style="width:100%">
+  <tr *ngFor="let eob of eobsArray">
+    <td style="width: 127px; "><p align="center"><a [routerLink]="['/eobdetail/' , eob.claimId1]">{{eob.claimId1}}</a></p></td>
+    <td style="width: 153px; "><p align="center">{{eob.claimType1}}</p></td>
+     <td style="width: 138px; "><p align="center">{{eob.claimTypeCd1}}</p></td>
+      <td style="width: 269px; ">{{eob.claimTypeCdDisplay1}}</td>
+      <td><p align="center">{{eob.billablePeriodStart1}}</p></td>
+       <td><p align="center">{{eob.billablePeriodEnd1}}</p></td>
+  </tr>
+  </table>
+  <table style="width:100%">
+  <tr *ngFor="let eob of eobsArray">
+    <td style="width: 127px; "><p align="center"><a [routerLink]="['/eobdetail/' , eob.claimId2]">{{eob.claimId2}}</a></p></td>
+    <td style="width: 153px; "><p align="center">{{eob.claimType2}}</p></td>
+     <td style="width: 138px; "><p align="center">{{eob.claimTypeCd2}}</p></td>
+      <td style="width: 269px; ">{{eob.claimTypeCdDisplay2}}</td>
+      <td><p align="center">{{eob.billablePeriodStart2}}</p></td>
+       <td><p align="center">{{eob.billablePeriodEnd2}}</p></td>
+  </tr>
+  </table>
+  <table style="width:100%">
+  <tr *ngFor="let eob of eobsArray">
+    <td style="width: 127px; "><p align="center"><a [routerLink]="['/eobdetail/' , eob.claimId3]">{{eob.claimId3}}</a></p></td>
+    <td style="width: 153px; "><p align="center">{{eob.claimType3}}</p></td>
+     <td style="width: 138px; "><p align="center">{{eob.claimTypeCd3}}</p></td>
+      <td style="width: 269px; ">{{eob.claimTypeCdDisplay3}}</td>
+      <td><p align="center">{{eob.billablePeriodStart3}}</p></td>
+       <td><p align="center">{{eob.billablePeriodEnd3}}</p></td>
+  </tr>
+</table>
+   <!--  <ul>
+       <ul *ngFor="let eob of eobsArray">{{eob.firstName}} {{eob.lastName}}  {{eob.beneId}} </ul>
+         <li *ngFor="let eob of eobsArray">{{eob.claimId1}}  {{eob.claimType1}} {{eob.claimTypeCd1}} {{eob.claimTypeCdDisplay1}} {{eob.billablePeriodStart1}} {{eob.billablePeriodEnd1}}</li>
+          <li *ngFor="let eob of eobsArray">{{eob.claimId2}}  {{eob.claimType2}} {{eob.claimTypeCd2}} {{eob.claimTypeCdDisplay2}} {{eob.billablePeriodStart2}} {{eob.billablePeriodEnd2}}</li>
+          <li *ngFor="let eob of eobsArray">{{eob.claimId3}}  {{eob.claimType3}} {{eob.claimTypeCd3}} {{eob.claimTypeCdDisplay3}} {{eob.billablePeriodStart3}} {{eob.billablePeriodEnd3}}</li>
+         
+    </ul> -->
 </div>
 <p><a [routerLink]="['/login']">Logout</a></p>
