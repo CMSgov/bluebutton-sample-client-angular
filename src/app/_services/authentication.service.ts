@@ -60,48 +60,30 @@ export class AuthenticationService {
          )
        
           .subscribe(
-      data => {
-       
-        localStorage.setItem('currentUser', JSON.stringify({ username, token: data.access_token}));
-        
-         
-         //retrieveFHIRData
+            data => {     
+            localStorage.setItem('currentUser', JSON.stringify({ username, token: data.access_token}));     
+            //retrieveFHIRData
   
-        var headers = new HttpHeaders()
-       .set('Content-Type', 'application/json');
+           var headers = new HttpHeaders()
+               .set('Content-Type', 'application/json');
   
-        const eobparams = new HttpParams({fromString: 'patient=20140000010000'});
+            const eobparams = new HttpParams({fromString: 'patient=20140000010000'});
   
-        return this.http.get<any>('https://sandbox.bluebutton.cms.gov/v1/fhir/ExplanationOfBenefit/'
-     //   return this.http.get<any>('https://sandbox.bluebutton.cms.gov/v1/fhir/Patient/'
-           )
-         .subscribe(data => {
-      //        let jsonObject = response.data;
-        
-            localStorage.setItem('dehJSONData', JSON.stringify(data));
-  
-              let jsonParsedObject = JSON.parse(JSON.stringify(data)) ;
-       
-           
-           let entry = data["entry"];
-
-           let firstEntry = entry[1];
-                   
-          // pass in your object structure as array elements
-           let pathArr = ['resource', 'billablePeriod', 'start'];
-          const billablePeriodStart =  pathArr.reduce((obj, key) =>
-        (obj && obj[key] !== 'undefined') ? obj[key] : undefined, firstEntry);
-      
-           
-            let pathArr2 = ['resource', 'item', 0, 'service', 'coding', 0, 'code'];
-          const hcpcsCode =  pathArr2.reduce((obj, key) =>
-        (obj && obj[key] !== 'undefined') ? obj[key] : undefined, firstEntry);             
-          router.navigate(['/home']);       
-           })         
-            },
-      err => {
-            
-      })
+           return this.http.get<any>('https://sandbox.bluebutton.cms.gov/v1/fhir/ExplanationOfBenefit/')
+             .subscribe(eobReturneddata => {
+                     // store EOB data  
+                    localStorage.setItem('eobJSONData', JSON.stringify(eobReturneddata));                
+                    return this.http.get<any>('https://sandbox.bluebutton.cms.gov/v1/fhir/Patient/')
+                       .subscribe(patientReturnedData => {
+                        // store Patient data  
+                           localStorage.setItem('patientJSONData', JSON.stringify(patientReturnedData));      
+                           router.navigate(['/home']);       
+                       })                        
+                 })         
+                  },
+            err => {
+                  
+            })
    
     }
   
