@@ -1,2 +1,2 @@
 eclipse.preferences.version=1
-typeScriptBuildPath={"tsconfig.json"\:{}}
+typeScriptBuildPath={"node_modules/inquirer/node_modules/rxjs/src/tsconfig.json"\:{},"node_modules/rxjs/src/tsconfig.json"\:{},"node_modules/uri-js/tsconfig.json"\:{},"tsconfig.json"\:{}}

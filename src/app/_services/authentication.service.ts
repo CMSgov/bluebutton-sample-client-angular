@@ -40,18 +40,6 @@ export class AuthenticationService {
 
     let body = urlSearchParams.toString();
    
-
-       const authorizationcode = 'authorization_code';
-    
-       const tokenparams = new HttpParams() 
-          .set('client_id', 'A9KpF5TNqruy9O5ecaOsBOSfOXhtENaiOdtvnSjm')
-          .set('client_secret', 'cu6NeYtrQfeDNFPbiNKOGJtPwaGQo3kuPpIPtXbBwPB2uNQ0GZLz3tZgIb8jt7yvwPf4Ysqy26DIeSBita7PtGsSccaWwZYO5NB5k9DBsQQ7qsQZSfxMGePJJY3IW8yp')
-           .set('code', code)
-            .set('grant_type', 'authorization_code')
-            .set('redirect_uri', 'http://localhost:8082/login');
-    
-    //    const tokenparams = new HttpParams({fromString: 'client_id=A9KpF5TNqruy9O5ecaOsBOSfOXhtENaiOdtvnSjm&redirect_uri=http://localhost:8082/login&response_type=token'});
-         const codeparams = new HttpParams({fromString: 'client_id=A9KpF5TNqruy9O5ecaOsBOSfOXhtENaiOdtvnSjm&redirect_uri=http://localhost:8082/login&response_type=code&state=8e896a59f0744a8e93bf2f1f13230be5'});
     
     return this.http.post<AuthToken>('https://sandbox.bluebutton.cms.gov/v1/o/token/?' + body,
          {
