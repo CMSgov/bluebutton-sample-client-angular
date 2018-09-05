@@ -33,8 +33,8 @@ here, you can fill out the form with the following options:
     
 You will need to go into the authentication.service.ts which is within the src/app/_services directory to input your client id and client secret.    Modify the following:
 
-urlSearchParams.set('client_id', '<<your client id here>>');
-urlSearchParams.set('client_secret', '<<your client secret here>>');
+urlSearchParams.set('client_id', \<your client id here\>);
+urlSearchParams.set('client_secret', \<your client secret here\>);
 
 These parameters should be in a properties file to be ideal.  Just wanted to keep it simple for now.
 
