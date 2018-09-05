@@ -50,7 +50,7 @@ And from here, you can navigate to http://localhost:8082/login to ensure the app
 
 Copy the following url into your browser to start this application.   Change \<Client Id\> to the client id of your application which you should have received via the application registration process mentioned above. 
 
-https://sandbox.bluebutton.cms.gov/v1/o/authorize/?client_id=\<Client Id\>&redirect_uri=http://localhost:8082/login&response_type=code&state=test1
+https://sandbox.bluebutton.cms.gov/v1/o/authorize/?client_id=<Client Id\>&redirect_uri=http://localhost:8082/login&response_type=code&state=test1
 
 
 Use test user of BBUser29999 and password of PW29999! for a sample beneficiary once the MyMedicare.gov login screen appears. 
