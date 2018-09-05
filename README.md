@@ -48,11 +48,12 @@ Finally, you're ready to execute
 
 And from here, you can navigate to http://localhost:8082/login to ensure the application has started.
 
-Copy the following url into your browser to start this application..
+Copy the following url into your browser to start this application.   Change <Client Id> to the client id of your application which you should have received via the application registration process mentioned above. 
 
-https://account.mymedicare.gov/?scope=openid%20profile&client_id=bluebutton&state=98161439157483715087066764&redirect_uri=https%3A//sandbox.bluebutton.cms.gov/mymedicare/sls-callback
-
-Use test user of BBUser29999 and password of PW29999! for a sample beneficiary
+https://sandbox.bluebutton.cms.gov/v1/o/authorize/?client_id=<Client Id>&redirect_uri=http://localhost:8082/login&response_type=code&state=test1
 
 
+Use test user of BBUser29999 and password of PW29999! for a sample beneficiary once the MyMedicare.gov login screen appears. 
+
+Follow the steps on the Angular login screen once it appears. 
 
