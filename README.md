@@ -33,8 +33,8 @@ here, you can fill out the form with the following options:
     
 You will need to go into the authentication.service.ts which is within the src/app/_services directory to input your client id and client secret.    Modify the following:
 
-urlSearchParams.set('client_id', \<your client id here\>);
-urlSearchParams.set('client_secret', \<your client secret here\>);
+urlSearchParams.set('client_id', \<client id\>);
+urlSearchParams.set('client_secret', \<client secret\>);
 
 These parameters should be in a properties file to be ideal.  Just wanted to keep it simple for now.
 
@@ -48,9 +48,9 @@ Finally, you're ready to execute
 
 And from here, you can navigate to http://localhost:8082/login to ensure the application has started.
 
-Copy the following url into your browser to start this application.   Change <Client Id> to the client id of your application which you should have received via the application registration process mentioned above. 
+Copy the following url into your browser to start this application.   Change \<Client Id\> to the client id of your application which you should have received via the application registration process mentioned above. 
 
-https://sandbox.bluebutton.cms.gov/v1/o/authorize/?client_id=<Client Id>&redirect_uri=http://localhost:8082/login&response_type=code&state=test1
+https://sandbox.bluebutton.cms.gov/v1/o/authorize/?client_id=\<Client Id\>&redirect_uri=http://localhost:8082/login&response_type=code&state=test1
 
 
 Use test user of BBUser29999 and password of PW29999! for a sample beneficiary once the MyMedicare.gov login screen appears. 
