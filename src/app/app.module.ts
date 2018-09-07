@@ -1,4 +1,4 @@
-﻿ import { NgModule }      from '@angular/core';
+﻿import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -14,6 +14,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { EOBDetailComponent } from './eobdetail';
+import { RemoteAppInfoService } from './_services';
 
 @NgModule({
     imports: [
@@ -33,7 +34,8 @@ import { EOBDetailComponent } from './eobdetail';
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // provider used to create fake backend
-        fakeBackendProvider
+        fakeBackendProvider,
+        RemoteAppInfoService
     ],
     bootstrap: [AppComponent]
 })
