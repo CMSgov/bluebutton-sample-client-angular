@@ -68,7 +68,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
   
   formatEOBData() {
-         let jsonData = JSON.parse(localStorage.getItem('dehJSONData'));
+         let jsonData = JSON.parse(localStorage.getItem('eobJSONData'));
      
          let jsonParsedObject = JSON.parse(JSON.stringify(jsonData)) ;
        
@@ -158,7 +158,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
   }
   
   formatEOBDetail ()  {
-       let jsonData = JSON.parse(localStorage.getItem('dehJSONData'));
+       let jsonData = JSON.parse(localStorage.getItem('eobJSONData'));
         
 
          let jsonParsedObject = JSON.parse(JSON.stringify(jsonData)) ;
