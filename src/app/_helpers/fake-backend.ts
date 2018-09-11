@@ -71,7 +71,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
          let jsonData = JSON.parse(localStorage.getItem('eobJSONData'));
      
          let jsonParsedObject = JSON.parse(JSON.stringify(jsonData)) ;
-       
+      
          let eobNew = new EOB();
     
          for (var i=0; i<1; i++){
@@ -193,9 +193,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             
             
          let entry = jsonData["entry"];              
-         let eobClaimEntry = entry[this.claimIndex];  
-            
-                            
+         let eobClaimEntry = entry[this.claimIndex];   
     
        // status     
         eobDetail.claimStatus = this.getNestedObject(eobClaimEntry, ['resource', 'status']) ;
@@ -210,7 +208,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         var index = this.claimId.indexOf( "-" ); 
         eobDetail.claimId = this.claimId.substr(index + 1,10);
         eobDetail.claimType = this.claimId.substr(0,index);
-                
+               
      // claim_type_cd and claim_type_cd display                    
        eobDetail.claimTypeCd = this.getNestedObject(eobClaimEntry, ['resource', 'type', 'coding', 0, 'code']) ;          
        eobDetail.claimTypeCdDisplay = this.getNestedObject(eobClaimEntry, ['resource', 'type', 'coding', 0, 'display']) ;
@@ -223,18 +221,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     
        eobDetail.firstName = 'John'
        eobDetail.lastName = 'Doe'
-    
-       
-    
+     
        let adjudication = this.getNestedObject(eobClaimEntry, ['resource', 'item', 0, 'adjudication']) ;
      
-//       for (var i=0; i< adjudication.length; i++){
-//              eobDetail.adjudicationDisplay = this.getNestedObject(eobClaimEntry, ['resource', 'item', 0, 'adjudication', i, 'category', 'coding', 0, 'display']) ;
-//              console.log("deh-adjudication display in fake back end " + eobDetail.adjudicationDisplay);
-//              eobDetail.adjudicationAmount = this.getNestedObject(eobClaimEntry, ['resource', 'item', 0, 'adjudication', i, 'amount', 'value']) ;
-//              console.log("deh-adjudication amount in fake back end " + eobDetail.adjudicationAmount);
-//         }
-//    
       eobDetail.itemHcpcsCode1 = this.getNestedObject(eobClaimEntry, ['resource', 'item', 0, 'service', 'coding', 0, 'code']) ;
        eobDetail.adjudicationDisplay1 = this.getNestedObject(eobClaimEntry, ['resource', 'item', 0, 'adjudication', 3, 'category', 'coding', 0, 'display']) ;
         eobDetail.adjudicationAmount1 = this.getNestedObject(eobClaimEntry, ['resource', 'item', 0, 'adjudication', 3, 'amount', 'value']) ;
@@ -243,7 +232,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             eobDetail.itemMtusCode1 = this.getNestedObject(eobClaimEntry, ['resource', 'item', 0, 'extension', 0, 'valueCoding',  'code']) ;
     eobDetail.itemBetosCodeDisplay1 = this.getNestedObject(eobClaimEntry, ['resource', 'item', 0, 'extension', 2, 'valueCoding',  'display']) ;
          eobDetail.itemBetosCode1 = this.getNestedObject(eobClaimEntry, ['resource', 'item', 0, 'extension', 2, 'valueCoding',  'code']) ;
-    
+ 
     eobDetail.adjudicationDisplay2 = this.getNestedObject(eobClaimEntry, ['resource', 'item', 1, 'adjudication', 3, 'category', 'coding', 0, 'display']) ;
         eobDetail.adjudicationAmount2 = this.getNestedObject(eobClaimEntry, ['resource', 'item', 1, 'adjudication', 3, 'amount', 'value']) ;
     eobDetail.adjudicationDisplay2B = this.getNestedObject(eobClaimEntry, ['resource', 'item', 1, 'adjudication', 1, 'category', 'coding', 0, 'display']) ;
@@ -251,9 +240,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             eobDetail.itemMtusCode2 = this.getNestedObject(eobClaimEntry, ['resource', 'item', 1, 'extension', 0, 'valueCoding',  'code']) ;
     eobDetail.itemBetosCodeDisplay2 = this.getNestedObject(eobClaimEntry, ['resource', 'item', 1, 'extension', 2, 'valueCoding',  'display']) ;
          eobDetail.itemBetosCode2 = this.getNestedObject(eobClaimEntry, ['resource', 'item', 1, 'extension', 2, 'valueCoding',  'code']) ;
-
-       eobDetail.nameArray = ['Ben', 'Nate', 'Austin', 'Yiannis', 'Matt M', 'Matt B']; 
-    
+      
        return eobDetail;
            
   }
