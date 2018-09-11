@@ -31,12 +31,15 @@ here, you can fill out the form with the following options:
     Authorization grant type: Authorization Code
     Redirect uris: http://localhost:8082/login
     
-You will need to go into the authentication.service.ts which is within the src/app/_services directory to input your client id and client secret.    Modify the following:
+You will need to go into the remoteappinfo.service.ts which is within the src/app/_services directory to 
+input your client id and client secret.    Modify the following lines:
 
-urlSearchParams.set('client_id', \<client id\>);
-urlSearchParams.set('client_secret', \<client secret\>);
+    'client_id': "<your_client_id>",
+    'client_secret': "<your_client_secret>",
 
-These parameters should be in a properties file to be ideal.  Just wanted to keep it simple for now.
+Replacing <your_client_id> and <your_client_secret> with the values from the application you registered.
+
+These parameters are in a service that can be referenced from other parts of your code.  
 
 
 ### Final Steps
@@ -48,12 +51,14 @@ Finally, you're ready to execute
 
 And from here, you can navigate to http://localhost:8082/login to ensure the application has started.
 
-Copy the following url into your browser to start this application.   Change \<Client Id\> to the client id of your application which you should have received via the application registration process mentioned above. 
-
-https://sandbox.bluebutton.cms.gov/v1/o/authorize/?client_id=<Client Id\>&redirect_uri=http://localhost:8082/login&response_type=code&state=test1
-
+click the "Connect to CMS Medicare Blue Button 2.0" button
 
 Use test user of BBUser29999 and password of PW29999! for a sample beneficiary once the MyMedicare.gov login screen appears. 
 
-Follow the steps on the Angular login screen once it appears. 
+After authorizing the application you will be returned to the login screen for the Angular app.
+Now fill in the user id and password for the angular app: 
+- user: test
+- password: test
+
+This should take you to a screen that displays parts of the ExplanationOfBenefit resource record.
 

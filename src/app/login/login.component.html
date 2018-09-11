@@ -1,13 +1,12 @@
 ﻿<div class="alert alert-info">
     Blue Button 2.0 Angular Sample Application  <br><br>
-    
-    Enter in the following username and password to start the sample application <br><br>
+
+    <div><button><a href="{{ bb_url }}" >Connect to CMS Medicare Blue Button 2.0</a></button>
+    </div>
+    <br/>
+    Enter in the following username and password to start the sample application <br/>
     Username: test<br />
     Password: test<br/>
-
-
-   <div><a href="{{ bb_url }}" >Connect to CMS Medicare Blue Button 2.0</a>
-   </div>
 </div>
 <h2>Login</h2>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
